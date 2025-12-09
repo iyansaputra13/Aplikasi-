@@ -21,9 +21,17 @@ class ItemController extends Controller
                         ->orWhere('barcode', 'like', "%{$search}%");
         })->latest()->get();
 
-        $lowStockItems = Item::where('quantity', '<=', DB::raw('min_stock'))->where('quantity', '>', 0)->get();
+        $lowStockItems = Item::where('quantity', '<=', DB::raw('min_stock'))
+                             ->where('quantity', '>', 0)
+                             ->get();
         $outOfStockItems = Item::where('quantity', 0)->get();
 
+        // Check if this is a products route (for cashier view)
+        if ($request->routeIs('products.index')) {
+            return view('products.index', compact('items', 'lowStockItems', 'outOfStockItems', 'search'));
+        }
+
+        // Default admin view
         return view('items.index', compact('items', 'lowStockItems', 'outOfStockItems', 'search'));
     }
 
@@ -45,7 +53,9 @@ class ItemController extends Controller
             'quantity' => 'required|integer|min:0',
             'price' => 'required|numeric|min:0',
             'min_stock' => 'required|integer|min:0',
-            'category' => 'nullable|string|max:255'
+            'category' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'barcode' => 'nullable|string|max:255|unique:items,barcode'
         ]);
 
         Item::create($request->all());
@@ -80,7 +90,9 @@ class ItemController extends Controller
             'quantity' => 'required|integer|min:0',
             'price' => 'required|numeric|min:0',
             'min_stock' => 'required|integer|min:0',
-            'category' => 'nullable|string|max:255'
+            'category' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'barcode' => 'nullable|string|max:255|unique:items,barcode,' . $item->id
         ]);
 
         $item->update($request->all());
