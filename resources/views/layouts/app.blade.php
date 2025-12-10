@@ -131,16 +131,24 @@
                         <span class="ml-3 font-medium">Restock</span>
                     </a>
                     
-                    <a href="#" class="sidebar-link flex items-center px-3 py-3 text-gray-700 rounded-lg hover:bg-blue-50">
-                        <i class="fas fa-file-invoice w-5"></i>
+                    <a href="{{ route('reports.sales') }}" class="sidebar-link flex items-center px-3 py-3 text-gray-700 rounded-lg hover:bg-blue-50 {{ request()->routeIs('reports.sales') ? 'active bg-blue-50 text-blue-600' : '' }}">
+                        <i class="fas fa-chart-line w-5"></i>
                         <span class="ml-3 font-medium">Laporan Penjualan</span>
-                        <span class="ml-auto bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded">Soon</span>
                     </a>
                     
-                    <a href="#" class="sidebar-link flex items-center px-3 py-3 text-gray-700 rounded-lg hover:bg-blue-50">
+                    <a href="{{ route('reports.stock') }}" class="sidebar-link flex items-center px-3 py-3 text-gray-700 rounded-lg hover:bg-blue-50 {{ request()->routeIs('reports.stock') ? 'active bg-blue-50 text-blue-600' : '' }}">
+                        <i class="fas fa-boxes w-5"></i>
+                        <span class="ml-3 font-medium">Laporan Stok</span>
+                    </a>
+                    
+                    <a href="{{ route('reports.profit') }}" class="sidebar-link flex items-center px-3 py-3 text-gray-700 rounded-lg hover:bg-blue-50 {{ request()->routeIs('reports.profit') ? 'active bg-blue-50 text-blue-600' : '' }}">
+                        <i class="fas fa-chart-pie w-5"></i>
+                        <span class="ml-3 font-medium">Analisis Profit</span>
+                    </a>
+                    
+                    <a href="{{ route('users.index') }}" class="sidebar-link flex items-center px-3 py-3 text-gray-700 rounded-lg hover:bg-blue-50 {{ request()->routeIs('users.*') ? 'active bg-blue-50 text-blue-600' : '' }}">
                         <i class="fas fa-users w-5"></i>
                         <span class="ml-3 font-medium">Kelola User</span>
-                        <span class="ml-auto bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded">Soon</span>
                     </a>
                     
                 @else
@@ -172,7 +180,7 @@
                 <div class="pt-4 mt-4 border-t border-gray-200">
                     <p class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Account</p>
                     
-                    <a href="#" class="sidebar-link flex items-center px-3 py-3 text-gray-700 rounded-lg hover:bg-blue-50">
+                    <a href="{{ route('profile') }}" class="sidebar-link flex items-center px-3 py-3 text-gray-700 rounded-lg hover:bg-blue-50 {{ request()->routeIs('profile') ? 'active bg-blue-50 text-blue-600' : '' }}">
                         <i class="fas fa-user-circle w-5"></i>
                         <span class="ml-3 font-medium">Profile</span>
                     </a>
