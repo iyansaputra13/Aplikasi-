@@ -14,16 +14,16 @@ class ItemController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
-        
-        $items = Item::when($search, function($query) use ($search) {
+
+        $items = Item::when($search, function ($query) use ($search) {
             return $query->where('name', 'like', "%{$search}%")
-                        ->orWhere('category', 'like', "%{$search}%")
-                        ->orWhere('barcode', 'like', "%{$search}%");
-        })->latest()->get();
+                ->orWhere('category', 'like', "%{$search}%")
+                ->orWhere('barcode', 'like', "%{$search}%");
+        })->latest()->paginate(20); // ← GANTI dari get() jadi paginate(20)
 
         $lowStockItems = Item::where('quantity', '<=', DB::raw('min_stock'))
-                             ->where('quantity', '>', 0)
-                             ->get();
+            ->where('quantity', '>', 0)
+            ->get();
         $outOfStockItems = Item::where('quantity', 0)->get();
 
         // Check if this is a products route (for cashier view)

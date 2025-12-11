@@ -146,6 +146,12 @@
                         <span class="ml-3 font-medium">Analisis Profit</span>
                     </a>
                     
+                    <a href="#" class="sidebar-link flex items-center px-3 py-3 text-gray-700 rounded-lg hover:bg-blue-50">
+                        <i class="fas fa-users w-5"></i>
+                        <span class="ml-3 font-medium">Kelola User</span>
+                        <span class="ml-auto bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded">Soon</span>
+                    </a>
+                    
                     <a href="{{ route('users.index') }}" class="sidebar-link flex items-center px-3 py-3 text-gray-700 rounded-lg hover:bg-blue-50 {{ request()->routeIs('users.*') ? 'active bg-blue-50 text-blue-600' : '' }}">
                         <i class="fas fa-users w-5"></i>
                         <span class="ml-3 font-medium">Kelola User</span>
@@ -199,7 +205,7 @@
     </aside>
     
     <!-- Main Content -->
-    <div class="sm:ml-64">
+    <div class="sm:ml-64 min-h-screen bg-gray-50">
         
         <!-- Top Header -->
         <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
